@@ -486,7 +486,7 @@ ul .dropdown li:hover{
     border: 1px solid rgba(255,255,255,0.5);
     height: 80vh;
     padding: 40px;
-    overflow: auto;
+    
 }
 .todo-lists-container{
     font-size: 25px;
@@ -504,6 +504,12 @@ ul .dropdown li:hover{
     display: flex;
     flex-direction: column;
     gap: 20px;
+    overflow: auto;
+    width: 100%;
+    border-radius: 20px;
+    background-color: transparent;
+    height: 65vh;
+    padding: 40px;
 }
 .btn{
     background-color: rgb(255,101,80);
@@ -518,12 +524,12 @@ ul .dropdown li:hover{
 }
 .update-btn{
     background-color: greenyellow;
-    animation: appear 0.5s;
+    
 }
 .update-btn:hover{
     background-color: rgb(97, 138, 36);
-    
 }
+
 @keyframes appear {
     from {
         opacity: 0;
@@ -578,7 +584,7 @@ ul .dropdown li:hover{
     opacity: 0;    
 }
 .confirm-btn{
-    transition: 0.5s all;
+    transition: 0.3s all;
     opacity: 0;
 }
 .fade-out{
@@ -587,3 +593,25 @@ ul .dropdown li:hover{
     visibility: hidden;
     transition: opacity 0.5s ease;
 }
+/* width */
+.todos-container::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+.todos-container::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+/* Handle */
+.todos-container::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+    
+}
+
+/* Handle on hover */
+.todos-container::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+  

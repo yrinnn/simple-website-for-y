@@ -103,6 +103,7 @@ function render(){
   document.querySelectorAll('.js-update-btn').forEach(updateBtn => {
     
     updateBtn.addEventListener("click" , () => {
+      
       const productId = updateBtn.dataset.productId
       const inputUpdateElement = document.querySelector(`.js-input-type-update-${productId}`)
       const jsTodoElement = document.querySelector(`.todo-name-${productId}`)
@@ -121,6 +122,7 @@ function render(){
           
 
           // wtf am i doin, might change
+          // so much sweats just for opacity animation might learn gsap
           if(value === ''){
             console.error("no string inputted")
             return
@@ -141,6 +143,14 @@ function render(){
             
             
             setTimeout(() => {
+              // appear animation
+              updateBtn.animate([
+                {opacity: '0'},
+                {opacity: '1'}
+              ], {
+                duration: 400,
+                iteration: 1
+              });
               updateBtn.style.display = "inline";
               updateBtn.style.opacity = 1;
             }, 540)  
