@@ -1,4 +1,4 @@
-import {todolist , deletefromlist, saveToStorage , addToList} from "./data/todos.js";
+import {todolist , deletefromlist, saveToStorage , addToList, getItemStorage , UpdateFunc} from "./data/todos.js";
 
 document.addEventListener("DOMContentLoaded" , function(){
   function addanimation(noteselector , picselector){
@@ -101,11 +101,12 @@ function render(){
 
   // Update button
   document.querySelectorAll('.js-update-btn').forEach(updateBtn => {
+    
     updateBtn.addEventListener("click" , () => {
       const productId = updateBtn.dataset.productId
       const inputUpdateElement = document.querySelector(`.js-input-type-update-${productId}`)
       const jsTodoElement = document.querySelector(`.todo-name-${productId}`)
-    
+      getItemStorage()
       inputUpdateElement.style.visibility = "visible";
       inputUpdateElement.style.opacity = 1;
       
@@ -113,10 +114,13 @@ function render(){
       document.querySelectorAll(`.js-confirm-btn-${productId}`).forEach(confirmBtn => {
       confirmBtn.style.visibility = "visible";
       confirmBtn.style.opacity = 1;
+      
         
         confirmBtn.addEventListener("click" , () => {
           let value = inputUpdateElement.value
           
+
+          // wtf am i doin, might change
           if(value === ''){
             console.error("no string inputted")
             return
@@ -142,15 +146,20 @@ function render(){
             }, 540)  
           }
           console.log(value)
+
           jsTodoElement.innerHTML = value
+
+          UpdateFunc(value , productId);
           
+          console.log(todolist)
+          saveToStorage()
+        
         });
        });
-      
       updateBtn.style.display = "none";
       updateBtn.style.opacity = 0;
     });
-    
+
   });
 }
 

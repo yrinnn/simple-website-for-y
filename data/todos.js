@@ -53,3 +53,11 @@ export function addToList(inputValue) {
   }
   console.log(todolist)
 }
+
+export function UpdateFunc(newValue , productId){
+  todolist.forEach(list => {
+    if(list.id === productId){
+      list.todo = newValue
+    };
+  });
+}
