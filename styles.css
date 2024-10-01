@@ -507,14 +507,40 @@ ul .dropdown li:hover{
 }
 .btn{
     background-color: rgb(255,101,80);
-    border-radius: 1.2em;
+    border-radius: 10px;
     padding: 15px;
     border: 1px solid black;
     cursor: pointer;
+    transition: 0.2s;
+}
+.btn:hover {
+    background-color: rgb(110, 39, 29);
 }
 .update-btn{
     background-color: greenyellow;
+    animation: appear 0.5s;
 }
+.update-btn:hover{
+    background-color: rgb(97, 138, 36);
+    
+}
+@keyframes appear {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+@keyframes disappear {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
 .title-todo{
     display: flex;
 }
@@ -528,14 +554,36 @@ ul .dropdown li:hover{
     color: white;
     font-size: 15px;
 }
+.add-btn:hover{
+    background-color: rgb(81, 128, 10);
+}
 .input-add-btn-container{
     display: flex;
     padding: 10px;
     gap: 10px;
+    
 }
 .input-add{
-    border-radius: 1.3em;
+    border-radius: 20px;
     padding: 0px 20px;
     font-size: 15px;
     background-color: rgba(255, 255, 255, 0.5);
+}
+.update-input-type{
+    padding: 15px;
+    border-radius: 1.3em;
+    border: none;
+    background-color: rgba(255, 255, 255, 0.5);
+    transition: 0.5s all;
+    opacity: 0;    
+}
+.confirm-btn{
+    transition: 0.5s all;
+    opacity: 0;
+}
+.fade-out{
+    pointer-events: none;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease;
 }

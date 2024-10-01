@@ -74,9 +74,9 @@ function render(){
     html = 
     `
     <div class="todo-lists-container js-todo-list-container-${todolist.id}">
-        ${todolist.todo}
+        <div class="todo-name-${todolist.id}">${todolist.todo}</div>
         <div>
-            <button class="btn update-btn js-update-btn" data-product-id="${todolist.id}">Update</button>
+            <input type="text" class="update-input-type js-input-type-update-${todolist.id}"> <button class="btn confirm-btn js-confirm-btn-${todolist.id}" >Confirm</button>  <button class="btn update-btn js-update-btn" data-product-id="${todolist.id}">Update</button>
             <button class="btn js-delete-btn" data-product-id="${todolist.id}">Delete</button>
         </div>
     </div>
@@ -98,16 +98,70 @@ function render(){
       console.log('clicked')
     });
   });
+
+  // Update button
+  document.querySelectorAll('.js-update-btn').forEach(updateBtn => {
+    updateBtn.addEventListener("click" , () => {
+      const productId = updateBtn.dataset.productId
+      const inputUpdateElement = document.querySelector(`.js-input-type-update-${productId}`)
+      const jsTodoElement = document.querySelector(`.todo-name-${productId}`)
+    
+      inputUpdateElement.style.visibility = "visible";
+      inputUpdateElement.style.opacity = 1;
+      
+      // Confirm btn nested
+      document.querySelectorAll(`.js-confirm-btn-${productId}`).forEach(confirmBtn => {
+      confirmBtn.style.visibility = "visible";
+      confirmBtn.style.opacity = 1;
+        
+        confirmBtn.addEventListener("click" , () => {
+          let value = inputUpdateElement.value
+          
+          if(value === ''){
+            console.error("no string inputted")
+            return
+          }
+          else if(confirmBtn.style.visibility === "visible" && confirmBtn.style.opacity === '1'
+            && inputUpdateElement.style.visibility === "visible" && inputUpdateElement.style.opacity === '1'
+          ){
+            if(confirmBtn.style.visibility === "hidden" && confirmBtn.style.opacity === '0'
+              && inputUpdateElement.style.visibility === 'hidden' && confirmBtn.style.opacity === '0'
+            ){
+              inputUpdateElement.classList.add("fade-out")
+              confirmBtn.classList.add("fade-out")
+            }
+            confirmBtn.style.visibility = "hidden";
+            confirmBtn.style.opacity = 0;
+            inputUpdateElement.style.visibility = "hidden";
+            inputUpdateElement.style.opacity = 0;
+            
+            
+            setTimeout(() => {
+              updateBtn.style.display = "inline";
+              updateBtn.style.opacity = 1;
+            }, 540)  
+          }
+          console.log(value)
+          jsTodoElement.innerHTML = value
+          
+        });
+       });
+      
+      updateBtn.style.display = "none";
+      updateBtn.style.opacity = 0;
+    });
+    
+  });
 }
 
-
+// add btn
 document.querySelectorAll('.add-btn').forEach((element) => {
   element.addEventListener('click' , (event) => {
     let inputValueElement = document.querySelector('.input-add');
     const inputValue = inputValueElement.value;
     addToList(inputValue);
-    render();
     saveToStorage();
+    render()
   });
 });
 
