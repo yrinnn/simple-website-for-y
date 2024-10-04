@@ -173,12 +173,13 @@ function render(){
   });
 }
 
-// add btn
+// Add btn
 document.querySelectorAll('.add-btn').forEach((element) => {
   element.addEventListener('click' , (event) => {
     let inputValueElement = document.querySelector('.input-add');
     const inputValue = inputValueElement.value;
     addToList(inputValue);
+    inputValueElement.value = ' ';
     saveToStorage();
     render()
   });
