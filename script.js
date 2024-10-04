@@ -178,7 +178,7 @@ document.querySelectorAll('.add-btn').forEach((element) => {
   element.addEventListener('click' , (event) => {
     let inputValueElement = document.querySelector('.input-add');
     const inputValue = inputValueElement.value;
-    addToList(inputValue);
+    addToList(inputValue); // yes
     inputValueElement.value = ' ';
     saveToStorage();
     render()
