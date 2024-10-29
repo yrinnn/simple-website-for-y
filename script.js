@@ -31,7 +31,7 @@ let asideContent = document.querySelector('.aside-content');
 let hideBtn = document.querySelector('.hide-btn');
 hideBtn.addEventListener("click" , () => {
   
-  if(passwordElement.value === "yerin"){
+  if(passwordElement.value === "minji"){
     passwordElement.value = '';
       if(hideBtn.textContent === "show"){
         asideContent.style.maxHeight = "300px";
@@ -64,10 +64,11 @@ notes.addEventListener('click' , () => {
     window.location.href = "next.html";
 });
 
-render();
+
+renderTodoList();
 
 
-function render(){
+function renderTodoList(){
   let accum = '';
   todolist.forEach((todolist) => {
     let html;
@@ -75,9 +76,10 @@ function render(){
     `
     <div class="todo-lists-container js-todo-list-container-${todolist.id}">
         <div class="todo-name-${todolist.id}">${todolist.todo}</div>
-        <div>
-            <input type="text" class="update-input-type js-input-type-update-${todolist.id}"> <button class="btn confirm-btn js-confirm-btn-${todolist.id}" >Confirm</button>  <button class="btn update-btn js-update-btn" data-product-id="${todolist.id}">Update</button>
-            <button class="btn js-delete-btn" data-product-id="${todolist.id}">Delete</button>
+        <div class="inside-todo">
+            <input type="text" class="update-input-type js-input-type-update-${todolist.id}"> 
+            <button class="btn confirm-btn js-confirm-btn-${todolist.id}" >Confirm</button>  <button class="btn update-btn js-update-btn" data-product-id="${todolist.id}">Update</button>
+            <button class="btn js-delete-btn js-delete-btn-${todolist.id}" data-product-id="${todolist.id}">Delete</button>
         </div>
     </div>
            
@@ -101,44 +103,40 @@ function render(){
 
   // Update button
   document.querySelectorAll('.js-update-btn').forEach(updateBtn => {
-    
     updateBtn.addEventListener("click" , () => {
       
-      const productId = updateBtn.dataset.productId
+      const productId = updateBtn.dataset.productId;
       const inputUpdateElement = document.querySelector(`.js-input-type-update-${productId}`)
       const jsTodoElement = document.querySelector(`.todo-name-${productId}`)
+      const deleteBTN = document.querySelector(`.js-delete-btn-${productId}`);
+
       getItemStorage()
-      inputUpdateElement.style.visibility = "visible";
-      inputUpdateElement.style.opacity = 1;
       
+      inputUpdateElement.style.display = "inline";
+      inputUpdateElement.style.opacity = 1;
+      console.log(deleteBTN);
       // Confirm btn nested
       document.querySelectorAll(`.js-confirm-btn-${productId}`).forEach(confirmBtn => {
-      confirmBtn.style.visibility = "visible";
+      confirmBtn.style.display = "inline";
       confirmBtn.style.opacity = 1;
-      
-        
-        confirmBtn.addEventListener("click" , () => {
-          let value = inputUpdateElement.value
-          
+      deleteBTN.style.display = 'none';
+      deleteBTN.style.opacity = 0;
+      confirmBtn.addEventListener("click" , () => {
+        let value = inputUpdateElement.value
 
-          // wtf am i doin, might change
-          // so much sweats just for opacity animation might learn gsap
-          if(value === ''){
-            console.error("no string inputted")
-            return
-          }
-          else if(confirmBtn.style.visibility === "visible" && confirmBtn.style.opacity === '1'
-            && inputUpdateElement.style.visibility === "visible" && inputUpdateElement.style.opacity === '1'
-          ){
-            if(confirmBtn.style.visibility === "hidden" && confirmBtn.style.opacity === '0'
-              && inputUpdateElement.style.visibility === 'hidden' && confirmBtn.style.opacity === '0'
-            ){
-              inputUpdateElement.classList.add("fade-out")
-              confirmBtn.classList.add("fade-out")
-            }
-            confirmBtn.style.visibility = "hidden";
+        // wtf am i doin, might change
+        // so much sweats just for opacity animation might learn gsap
+        if(value === ''){
+          console.error("no string inputted")
+          return
+        }
+        else if(confirmBtn.style.display === "inline" && confirmBtn.style.opacity === '1'
+          && inputUpdateElement.style.display === "inline" && inputUpdateElement.style.opacity === '1'
+        ){
+
+            confirmBtn.style.display = "none";
             confirmBtn.style.opacity = 0;
-            inputUpdateElement.style.visibility = "hidden";
+            inputUpdateElement.style.display = "none";
             inputUpdateElement.style.opacity = 0;
             
             
@@ -151,39 +149,52 @@ function render(){
                 duration: 400,
                 iteration: 1
               });
+              deleteBTN.animate([
+                {opacity: '0'},
+                {opacity: '1'}
+              ], {
+                duration: 400,
+                iteration: 1
+              });
               updateBtn.style.display = "inline";
               updateBtn.style.opacity = 1;
+              deleteBTN.style.display = "inline";
+              deleteBTN.style.opacity = 1;
             }, 540)  
           }
+          
           console.log(value)
 
           jsTodoElement.innerHTML = value
 
           UpdateFunc(value , productId);
-          
+
           console.log(todolist)
           saveToStorage()
         
         });
-       });
+      });
       updateBtn.style.display = "none";
       updateBtn.style.opacity = 0;
+      inputUpdateElement.value = ''
     });
+    
+  });
 
+    // Add btn
+  document.querySelectorAll('.add-btn').forEach((element) => {
+    element.addEventListener('click' , (event) => {
+      let inputValueElement = document.querySelector('.input-add');
+      const inputValue = inputValueElement.value;
+      addToList(inputValue); // yes
+      inputValueElement.value = ' ';
+      saveToStorage();
+      renderTodoList()
+    });
   });
 }
 
-// Add btn
-document.querySelectorAll('.add-btn').forEach((element) => {
-  element.addEventListener('click' , (event) => {
-    let inputValueElement = document.querySelector('.input-add');
-    const inputValue = inputValueElement.value;
-    addToList(inputValue); // yes
-    inputValueElement.value = ' ';
-    saveToStorage();
-    render()
-  });
-});
+
 
 
 

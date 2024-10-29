@@ -127,8 +127,10 @@ ul .dropdown li:hover{
     display: flex;
     flex: 1;
     min-width: calc(70% - 10px);
+    
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(2,1fr);
+    grid-template-rows: repeat(2,1fr);
 }
 .aside {
     min-width: calc(30% - 10px);
@@ -486,48 +488,65 @@ ul .dropdown li:hover{
     border: 1px solid rgba(255,255,255,0.5);
     height: 80vh;
     padding: 40px;
-    
 }
 .todo-lists-container{
+    width: 23%;
+    height: 55%;
     font-size: 25px;
     padding: 20px;
     background-color: rgba(180 ,180 ,180, 0.2);
     border: 1px solid black;
-    border-radius: 1.5em;
+    border-radius: 20px;
     box-shadow: 5px 8px 14px -4px rgba(0,0,0,0.46);
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     align-items: center;
+    justify-content: space-between;
 }
 .todos-container{
     padding: 20px; 
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
     gap: 20px;
-    overflow: auto;
+    overflow:auto;
     width: 100%;
     border-radius: 20px;
     background-color: transparent;
     height: 65vh;
     padding: 40px;
+    border: 1px brown solid;
 }
+.todos-container::-webkit-scrollbar{ /* To hide the scrollbars, but still be able to keep scrolling */
+    display: none;
+}
+
+.todos-container{
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+  
 .btn{
     background-color: rgb(255,101,80);
     border-radius: 10px;
-    padding: 15px;
+    padding: 15px;  
     border: 1px solid black;
     cursor: pointer;
     transition: 0.2s;
+    width: 100px;
 }
 .btn:hover {
     background-color: rgb(110, 39, 29);
 }
 .update-btn{
+    width: 70px;
     background-color: greenyellow;
-    
 }
 .update-btn:hover{
     background-color: rgb(97, 138, 36);
+}
+.js-delete-btn{
+    width: 70px;
 }
 
 @keyframes appear {
@@ -576,6 +595,7 @@ ul .dropdown li:hover{
     background-color: rgba(255, 255, 255, 0.5);
 }
 .update-input-type{
+    width: 100px;
     padding: 15px;
     border-radius: 1.3em;
     border: none;
@@ -614,4 +634,12 @@ ul .dropdown li:hover{
 .todos-container::-webkit-scrollbar-thumb:hover {
     background: #555;
 }
-  
+.inside-todo{
+    margin-top: 10px;
+    overflow:auto;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    align-items: center;
+    align-self: flex-end;
+}

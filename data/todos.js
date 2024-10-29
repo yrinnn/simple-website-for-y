@@ -6,14 +6,6 @@ export let todolist = getItemStorage() || [
   {
     id: '2',
     todo: "Make Dinner"
-  },
-  {
-    id: '3',
-    todo: "Wash Dishes"
-  },
-  {
-    id: '4',
-    todo: "make monkey"
   }
 ]
 
