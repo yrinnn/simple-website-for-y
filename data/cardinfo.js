@@ -1,4 +1,4 @@
-const Info = [
+export const info = [
   {
     image: "icons/minj1.jpg",
     imageIcon : "icons/pom.png",

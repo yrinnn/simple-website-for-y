@@ -1,4 +1,5 @@
 import {todolist , deletefromlist, saveToStorage , addToList, getItemStorage , UpdateFunc} from "./data/todos.js";
+import { info } from "./data/cardinfo.js";
 
 document.addEventListener("DOMContentLoaded" , function(){
   function addanimation(noteselector , picselector){
@@ -24,6 +25,7 @@ document.addEventListener("DOMContentLoaded" , function(){
   addanimation('.notes-3', '.yerin-pic-3');
   addanimation('.notes-4', '.yerin-pic-4');
 });
+
 
 let passwordElement = document.querySelector('.password-input');
 let coverElement = document.querySelector('.cover');
@@ -186,10 +188,15 @@ function renderTodoList(){
     element.addEventListener('click' , (event) => {
       let inputValueElement = document.querySelector('.input-add');
       const inputValue = inputValueElement.value;
-      addToList(inputValue); // yes
-      inputValueElement.value = ' ';
-      saveToStorage();
-      renderTodoList()
+      // inputValueElement.value = '';
+      if(inputValue !== ''){
+        addToList(inputValue); 
+        saveToStorage();
+        renderTodoList()
+      } else {
+        console.error("Please Input Some Value")
+      }
+      
     });
   });
 }

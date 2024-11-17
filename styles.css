@@ -127,7 +127,6 @@ ul .dropdown li:hover{
     display: flex;
     flex: 1;
     min-width: calc(70% - 10px);
-    
     display: grid;
     grid-template-columns: repeat(2,1fr);
     grid-template-rows: repeat(2,1fr);
