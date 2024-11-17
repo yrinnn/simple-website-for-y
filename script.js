@@ -187,9 +187,9 @@ function renderTodoList(){
   document.querySelectorAll('.add-btn').forEach((element) => {
     element.addEventListener('click' , (event) => {
       let inputValueElement = document.querySelector('.input-add');
-      const inputValue = inputValueElement.value;
+      const inputValue = inputValueElement.value.trim();
       inputValueElement.value = '';
-      if(inputValue !== ''){
+      if(inputValue){
         addToList(inputValue); 
         saveToStorage();
         renderTodoList()
