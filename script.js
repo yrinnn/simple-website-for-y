@@ -188,7 +188,7 @@ function renderTodoList(){
     element.addEventListener('click' , (event) => {
       let inputValueElement = document.querySelector('.input-add');
       const inputValue = inputValueElement.value;
-      // inputValueElement.value = '';
+      inputValueElement.value = '';
       if(inputValue !== ''){
         addToList(inputValue); 
         saveToStorage();
