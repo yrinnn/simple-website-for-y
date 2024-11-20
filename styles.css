@@ -333,7 +333,7 @@ ul .dropdown li:hover{
     opacity: 0;
     transform: 1s all;
 }
-.notes{
+.notes-1{
     width: 80%;
     height: 80%;
     border-radius: 1.8em;
@@ -359,7 +359,7 @@ ul .dropdown li:hover{
     box-shadow: 0px 0px 15px rgba(0,0,0,0.5);
     transition: 120ms ease-in-out;
 }
-.notes-2:hover ,.notes:hover,.notes-3:hover,.notes-4:hover{
+.notes-2:hover ,.notes-1:hover,.notes-3:hover,.notes-4:hover{
     transform: translateY(-5px);
     box-shadow: 0px 15px 25px rgba(0,0,0,0.5);
     cursor:pointer; 
@@ -514,7 +514,7 @@ ul .dropdown li:hover{
     background-color: transparent;
     height: 65vh;
     padding: 40px;
-    border: 1px brown solid;
+    border: 1px transparent;
 }
 .todos-container::-webkit-scrollbar{ /* To hide the scrollbars, but still be able to keep scrolling */
     display: none;

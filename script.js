@@ -1,6 +1,8 @@
 import {todolist , deletefromlist, saveToStorage , addToList, getItemStorage , UpdateFunc} from "./data/todos.js";
-import { info } from "./data/cardinfo.js";
+import { info , renderIcons } from "./data/cardinfo.js";
 
+renderIcons()
+ 
 document.addEventListener("DOMContentLoaded" , function(){
   function addanimation(noteselector , picselector){
     const note = document.querySelector(noteselector);
@@ -20,7 +22,7 @@ document.addEventListener("DOMContentLoaded" , function(){
       console.error(`The elements ${note} and ${pic} are not found`);
     }
   }
-  addanimation('.notes', '.yerin-pic-1');
+  addanimation('.notes-1', '.yerin-pic-1');
   addanimation('.notes-2', '.yerin-pic-2');
   addanimation('.notes-3', '.yerin-pic-3');
   addanimation('.notes-4', '.yerin-pic-4');
@@ -61,7 +63,7 @@ passwordElement.addEventListener("click", () => {
 passwordElement.addEventListener("blur" , () => {
   passwordElement.style.width = "35px";
 })
-let notes = document.querySelector('.notes');
+let notes = document.querySelector('.notes-1');
 notes.addEventListener('click' , () => {
     window.location.href = "next.html";
 });
